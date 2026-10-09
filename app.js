@@ -249,6 +249,36 @@
     const input = document.getElementById("codeInput");
     const button = document.getElementById("checkBtn");
     const result = document.getElementById("result");
+    const kittenBtn = document.getElementById("kittenBtn");
+    const kittenPopup = document.getElementById("kittenPopup");
+
+    /* ============================================================
+       Котик в шапке — всплывашка «Молодец» по клику
+       ============================================================ */
+    let kittenTimer = null;
+
+    function showKittenPopup() {
+        if (!kittenPopup) return;
+        kittenPopup.classList.remove("visible");
+        // Форсим reflow, чтобы анимация перезапускалась при быстрых кликах
+        void kittenPopup.offsetWidth;
+        kittenPopup.classList.add("visible");
+
+        clearTimeout(kittenTimer);
+        kittenTimer = setTimeout(() => {
+            kittenPopup.classList.remove("visible");
+        }, 8000);
+    }
+
+    if (kittenBtn) {
+        kittenBtn.addEventListener("click", showKittenPopup);
+        kittenBtn.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+                e.preventDefault();
+                showKittenPopup();
+            }
+        });
+    }
 
     /* ============================================================
        Авто-форматирование ввода: XXXX-XXXX

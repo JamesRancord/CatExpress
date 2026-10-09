@@ -72,9 +72,26 @@ body {
 }
 
 .brand-kitten {
+    position: relative;
     display: inline-flex;
+    cursor: pointer;
     animation: kittenBob 3.4s ease-in-out infinite;
     transform-origin: 50% 80%;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    border-radius: 50%;
+}
+
+.brand-kitten:focus-visible {
+    box-shadow: 0 0 0 3px rgba(244, 162, 89, 0.5);
+}
+
+.brand-kitten:active svg {
+    transform: scale(0.94);
+}
+
+.brand-kitten svg {
+    transition: transform 0.15s ease;
 }
 
 @keyframes kittenBob {
@@ -97,6 +114,55 @@ body {
     font-size: 15px;
     margin: 0 0 28px;
     line-height: 1.45;
+}
+
+/* ---------- Всплывашка «Молодец» над котиком ---------- */
+.kitten-popup {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px) scale(0.9);
+    transform-origin: 50% 100%;
+
+    background: #fff;
+    color: var(--accent-dark);
+    font-family: "Comfortaa", "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+
+    padding: 7px 16px;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 10px 22px -10px rgba(232, 147, 74, 0.55);
+
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 5;
+}
+
+.kitten-popup::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: var(--accent);
+    margin-top: -1px;
+}
+
+.kitten-popup.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
 /* ---------- Форма ---------- */
@@ -333,7 +399,6 @@ body {
 .result-card.not-found .result-title { color: var(--fail); }
 
 /* ---------- Анимации внутри котов ---------- */
-/* Радостный кот — пульсирующие сердечки */
 .cat-hearts .heart {
     transform-origin: center;
     animation: heartFloat 2.4s ease-in-out infinite;
@@ -347,7 +412,6 @@ body {
     50%      { opacity: 1;   transform: translateY(-6px) scale(1.12); }
 }
 
-/* Бегущий кот — линии скорости */
 .cat-running .speed-line {
     animation: speedDash 0.8s linear infinite;
 }
@@ -361,7 +425,6 @@ body {
     100% { opacity: 0; transform: translateX(-10px); }
 }
 
-/* Грустный кот — капелька слёз */
 .cat-sad .tear {
     animation: tearDrop 2.6s ease-in infinite;
 }
