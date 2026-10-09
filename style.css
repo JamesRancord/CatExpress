@@ -1,0 +1,386 @@
+:root {
+    --bg-1: #fdf6ec;
+    --bg-2: #ffe8d6;
+    --card: #ffffff;
+    --text: #3a2a1e;
+    --text-muted: #8a7566;
+    --accent: #f4a259;
+    --accent-dark: #e8934a;
+    --accent-soft: #ffd3b3;
+    --border: #ecdcc9;
+
+    --ok: #2f9e6e;
+    --ok-bg: #e8f8ef;
+    --ok-border: #b9e6cd;
+
+    --transit: #3d7fd6;
+    --transit-bg: #e8f1fc;
+    --transit-border: #bcd7f4;
+
+    --fail: #c9524d;
+    --fail-bg: #fdeceb;
+    --fail-border: #f4c4c2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(244, 162, 89, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(255, 211, 179, 0.35) 0%, transparent 50%),
+        linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Карточка ---------- */
+.card {
+    width: 100%;
+    max-width: 560px;
+    background: var(--card);
+    border-radius: 28px;
+    padding: clamp(24px, 5vw, 44px);
+    box-shadow:
+        0 2px 6px rgba(58, 42, 30, 0.04),
+        0 20px 50px -18px rgba(58, 42, 30, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- Бренд ---------- */
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.brand-kitten {
+    display: inline-flex;
+    animation: kittenBob 3.4s ease-in-out infinite;
+    transform-origin: 50% 80%;
+}
+
+@keyframes kittenBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-4px) rotate(2deg); }
+}
+
+.brand-title {
+    font-family: "Comfortaa", "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 6vmin, 40px);
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--text);
+}
+
+.tagline {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 0 0 28px;
+    line-height: 1.45;
+}
+
+/* ---------- Форма ---------- */
+.tracker {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.field-input {
+    font-family: "Comfortaa", "Nunito", monospace;
+    font-weight: 700;
+    font-size: clamp(20px, 5vmin, 26px);
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: var(--text);
+    background: #fbf6ef;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    font-variant-numeric: tabular-nums;
+}
+
+.field-input::placeholder {
+    color: #d7c5b2;
+    letter-spacing: 0.18em;
+}
+
+.field-input:focus {
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(244, 162, 89, 0.18);
+}
+
+.field-input.invalid {
+    border-color: var(--fail);
+    background: var(--fail-bg);
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+}
+
+.field-hint {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin: 0;
+    text-align: center;
+}
+
+/* ---------- Кнопка ---------- */
+.check-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: "Comfortaa", "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border: none;
+    border-radius: 16px;
+    padding: 16px 24px;
+    cursor: pointer;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 6px 18px -6px rgba(232, 147, 74, 0.6);
+    transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.check-btn:hover {
+    filter: brightness(1.05);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 8px 22px -6px rgba(232, 147, 74, 0.7);
+}
+
+.check-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.4) inset,
+        0 3px 10px -6px rgba(232, 147, 74, 0.6);
+}
+
+.check-btn:focus-visible {
+    outline: 3px solid rgba(244, 162, 89, 0.5);
+    outline-offset: 3px;
+}
+
+.check-btn:disabled {
+    cursor: progress;
+    filter: saturate(0.75) brightness(0.98);
+    transform: none;
+}
+
+.check-btn-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    display: none;
+    animation: spin 0.7s linear infinite;
+}
+
+.check-btn.loading .check-btn-spinner {
+    display: inline-block;
+}
+
+.check-btn.loading .check-btn-text {
+    opacity: 0.85;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ---------- Результат ---------- */
+.result {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    min-height: 0;
+}
+
+.result-card {
+    width: 100%;
+    border-radius: 22px;
+    padding: 26px 22px 22px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    border: 2px solid transparent;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: resultIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes resultIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-card.delivered {
+    background: var(--ok-bg);
+    border-color: var(--ok-border);
+}
+
+.result-card.transit {
+    background: var(--transit-bg);
+    border-color: var(--transit-border);
+}
+
+.result-card.not-found {
+    background: var(--fail-bg);
+    border-color: var(--fail-border);
+}
+
+.result-cat {
+    width: clamp(140px, 34vmin, 190px);
+    height: clamp(140px, 34vmin, 190px);
+    display: block;
+}
+
+.result-cat svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.result-title {
+    font-family: "Comfortaa", "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 4vmin, 22px);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.result-text {
+    font-size: 15.5px;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 38ch;
+}
+
+.result-code {
+    font-family: "Comfortaa", monospace;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(58, 42, 30, 0.08);
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.result-card.delivered .result-title { color: var(--ok); }
+.result-card.transit   .result-title { color: var(--transit); }
+.result-card.not-found .result-title { color: var(--fail); }
+
+/* ---------- Анимации внутри котов ---------- */
+/* Радостный кот — пульсирующие сердечки */
+.cat-hearts .heart {
+    transform-origin: center;
+    animation: heartFloat 2.4s ease-in-out infinite;
+}
+
+.cat-hearts .heart.h2 { animation-delay: 0.6s; }
+.cat-hearts .heart.h3 { animation-delay: 1.2s; }
+
+@keyframes heartFloat {
+    0%, 100% { opacity: 0.4; transform: translateY(0) scale(1); }
+    50%      { opacity: 1;   transform: translateY(-6px) scale(1.12); }
+}
+
+/* Бегущий кот — линии скорости */
+.cat-running .speed-line {
+    animation: speedDash 0.8s linear infinite;
+}
+
+.cat-running .speed-line.s2 { animation-delay: 0.2s; }
+.cat-running .speed-line.s3 { animation-delay: 0.4s; }
+
+@keyframes speedDash {
+    0%   { opacity: 0; transform: translateX(8px); }
+    50%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(-10px); }
+}
+
+/* Грустный кот — капелька слёз */
+.cat-sad .tear {
+    animation: tearDrop 2.6s ease-in infinite;
+}
+
+@keyframes tearDrop {
+    0%   { opacity: 0; transform: translateY(0); }
+    20%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(14px); }
+}
+
+/* Уважение к настройкам доступности */
+@media (prefers-reduced-motion: reduce) {
+    .brand-kitten,
+    .cat-hearts .heart,
+    .cat-running .speed-line,
+    .cat-sad .tear {
+        animation: none;
+    }
+    .result-card {
+        animation-duration: 0.01ms;
+    }
+}

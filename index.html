@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Express — отслеживание посылок</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Comfortaa:wght@500;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main class="card">
+        <header class="brand">
+            <span class="brand-kitten" aria-hidden="true">
+                <svg viewBox="0 0 60 60" width="52" height="52">
+                    <!-- уши -->
+                    <path d="M12,26 L8,8 L24,20 Z" fill="#cfcac2" />
+                    <path d="M48,26 L52,8 L36,20 Z" fill="#cfcac2" />
+                    <!-- розовая внутренность ушей -->
+                    <path d="M14,23 L12,13 L21,19 Z" fill="#d9b3ba" />
+                    <path d="M46,23 L48,13 L39,19 Z" fill="#d9b3ba" />
+                    <!-- тёмные кончики -->
+                    <path d="M10,15 L8,8 L15,14 Z" fill="#9c9891" opacity="0.7" />
+                    <path d="M50,15 L52,8 L45,14 Z" fill="#9c9891" opacity="0.7" />
+
+                    <!-- голова -->
+                    <circle cx="30" cy="32" r="20" fill="#cfcac2" />
+
+                    <!-- полоски на лбу "М" -->
+                    <path d="M23,20 L25,26 L27,21 L29,27 L31,21 L33,26 L35,20"
+                          stroke="#9c9891" stroke-width="1.6" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- белая мордочка -->
+                    <path d="M18,34 Q30,28 42,34 Q44,42 37,47 Q30,50 23,47 Q16,42 18,34 Z"
+                          fill="#f7f3ec" />
+
+                    <!-- зажмуренные глаза -->
+                    <path d="M21,32 Q25,29 29,32" stroke="#3a2a1e" stroke-width="1.6"
+                          fill="none" stroke-linecap="round" />
+                    <path d="M31,32 Q35,29 39,32" stroke="#3a2a1e" stroke-width="1.6"
+                          fill="none" stroke-linecap="round" />
+
+                    <!-- розовый нос -->
+                    <path d="M28,38 L32,38 L30,40 Z" fill="#e6a3af" />
+
+                    <!-- улыбка -->
+                    <path d="M27,42 Q30,44 33,42" stroke="#3a2a1e" stroke-width="1.2"
+                          fill="none" stroke-linecap="round" />
+
+                    <!-- усы -->
+                    <line x1="14" y1="37" x2="24" y2="38" stroke="#f7f3ec" stroke-width="1" stroke-linecap="round" />
+                    <line x1="14" y1="41" x2="24" y2="41" stroke="#f7f3ec" stroke-width="1" stroke-linecap="round" />
+                    <line x1="46" y1="37" x2="36" y2="38" stroke="#f7f3ec" stroke-width="1" stroke-linecap="round" />
+                    <line x1="46" y1="41" x2="36" y2="41" stroke="#f7f3ec" stroke-width="1" stroke-linecap="round" />
+                </svg>
+            </span>
+            <h1 class="brand-title">Cat Express</h1>
+        </header>
+
+        <p class="tagline">Мы доставим вашу посылку быстрее, чем кот найдёт коробку</p>
+
+        <form class="tracker" id="trackerForm" novalidate>
+            <label class="field">
+                <span class="field-label">Номер отправления</span>
+                <input
+                    id="codeInput"
+                    class="field-input"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="9"
+                    placeholder="0000-0000"
+                    aria-describedby="fieldHint"
+                />
+            </label>
+            <p class="field-hint" id="fieldHint">Формат: 4 цифры, дефис, 4 цифры</p>
+
+            <button type="submit" class="check-btn" id="checkBtn">
+                <span class="check-btn-text">Проверить</span>
+                <span class="check-btn-spinner" aria-hidden="true"></span>
+            </button>
+        </form>
+
+        <section class="result" id="result" aria-live="polite"></section>
+    </main>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
